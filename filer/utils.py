@@ -6,6 +6,11 @@ from os.path import exists
 from os.path import isdir
 from os.path import isfile
 
+try:
+    from str import maketrans
+except ImportError:
+    from string import maketrans
+
 import magic
 
 from filer.info import MIME_EXTENSION_DICT
@@ -24,7 +29,7 @@ def remove_nondigits(string_arg):
     :return: string consisting only of digits
     :rtype: str
     """
-    all = string.maketrans('', '')
+    all = maketrans('', '')
     nodigs = all.translate(all, string.digits + '.')
     return string_arg.translate(all, nodigs)
 
