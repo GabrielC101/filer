@@ -1,10 +1,10 @@
 #!/usr/bin/env python
 import os
 
-from filer.videos import VideoFile
-from filer.files import File
-from filer.dirs import Directory
-from filer.paths import Path
+from forest.videos import VideoFile
+from forest.files import File
+from forest.dirs import Directory
+from forest.paths import Path
 
 
 class PathProcessor(object):

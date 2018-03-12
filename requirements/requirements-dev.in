@@ -1,5 +1,0 @@
--r requirements-testing.txt
-pip-tools
-ipython
-coverage
-tox

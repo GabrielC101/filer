@@ -1,6 +1,6 @@
-from filer.ffmpeg_wrapper.probe import get_video_length, get_video_info
-from filer.ffmpeg_wrapper.utils import is_video
-from filer.files import File
+from forest.ffmpeg_wrapper.probe import get_video_length, get_video_info
+from forest.ffmpeg_wrapper.utils import is_video
+from forest.files import File
 
 
 class VideoFile(File):

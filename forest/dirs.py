@@ -1,8 +1,8 @@
 #!/usr/bin/env python
 import os
 
-from filer.paths import Path
-from filer.utils import is_dir
+from forest.paths import Path
+from forest.utils import is_dir
 
 
 class Directory(Path):

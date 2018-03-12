@@ -2,7 +2,7 @@
 
 # from tests.base_test_case import BaseTestCase
 # from tests.fixtures import DIRECTORY_001
-# from filer.finders import list_files, list_dirs
+# from forest.finders import list_files, list_dirs
 #
 #
 # class TestFinders(BaseTestCase):

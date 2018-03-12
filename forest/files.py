@@ -5,8 +5,8 @@ import shutil
 import magic
 import xxhash
 
-from filer.paths import Path
-from filer.utils import is_file
+from forest.paths import Path
+from forest.utils import is_file
 
 
 class File(Path):

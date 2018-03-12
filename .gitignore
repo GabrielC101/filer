@@ -100,3 +100,5 @@ fixtures.py
 ignore
 
 .ignore
+
+.pytest_cache/

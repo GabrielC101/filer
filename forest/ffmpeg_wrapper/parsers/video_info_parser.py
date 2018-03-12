@@ -2,7 +2,7 @@
 from marshmallow import Schema
 from marshmallow.fields import Int, Nested, Float
 
-from filer.ffmpeg_wrapper.parsers.fields import ASCII
+from forest.ffmpeg_wrapper.parsers.fields import ASCII
 
 
 class DispositionParser(Schema):

@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 import os
 
-from filer.utils import get_path_type, get_size, get_inode, atime, mtime, ctime, get_folder_size, \
+from forest.utils import get_path_type, get_size, get_inode, atime, mtime, ctime, get_folder_size, \
     get_mime_from_extension
 
 

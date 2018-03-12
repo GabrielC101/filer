@@ -7,13 +7,12 @@ from os.path import isdir
 from os.path import isfile
 
 try:
-    from str import maketrans
-except ImportError:
     from string import maketrans
-
+except ImportError:
+    maketrans = str.maketrans
 import magic
 
-from filer.info import MIME_EXTENSION_DICT
+from forest.info import MIME_EXTENSION_DICT
 
 
 # For backwards compatibility. Previously, this module include unnecessary functions:
@@ -29,9 +28,8 @@ def remove_nondigits(string_arg):
     :return: string consisting only of digits
     :rtype: str
     """
-    all = maketrans('', '')
-    nodigs = all.translate(all, string.digits + '.')
-    return string_arg.translate(all, nodigs)
+
+    return ''.join(filter(lambda x: x.isdigit() or x == '.', string_arg))
 
 
 def get_path_type(path):
