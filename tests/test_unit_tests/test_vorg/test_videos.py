@@ -2,7 +2,7 @@
 # from tests.base_test_case import BaseTestCase
 #
 # from tests.fixtures import VIDEO_PATH_001
-# from forest.videos import VideoFile
+# from thicket.videos import VideoFile
 #
 #
 # class TestVideo(BaseTestCase):

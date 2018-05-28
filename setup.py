@@ -7,9 +7,9 @@ setup(
     version=str(VERSION),
     description='File Path API for Python.',
     packages=[
-        'forest',
-        'forest.ffmpeg_wrapper',
-        'forest.ffmpeg_wrapper.parsers',
+        'thicket',
+        'thicket.ffmpeg_wrapper',
+        'thicket.ffmpeg_wrapper.parsers',
               ]
 ,
     url='https://github.com/GabrielC101/forest',

@@ -1,10 +1,10 @@
 #!/usr/bin/env python
 import os
 
-from forest.videos import VideoFile
-from forest.files import File
-from forest.dirs import Directory
-from forest.paths import Path
+from thicket.videos import VideoFile
+from thicket.files import File
+from thicket.dirs import Directory
+from thicket.paths import Path
 
 
 class PathProcessor(object):

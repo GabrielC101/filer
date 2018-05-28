@@ -12,7 +12,7 @@ except ImportError:
     maketrans = str.maketrans
 import magic
 
-from forest.info import MIME_EXTENSION_DICT
+from thicket.info import MIME_EXTENSION_DICT
 
 
 # For backwards compatibility. Previously, this module include unnecessary functions:

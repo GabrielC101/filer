@@ -1,8 +1,8 @@
 #!/usr/bin/env python
 import os
 
-from forest.processors import PathProcessor
-from forest.collection import Collection
+from thicket.processors import PathProcessor
+from thicket.collection import Collection
 
 
 def list_dirs(path='.', recursive=True, include_parent_dir=False):

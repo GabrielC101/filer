@@ -1,6 +1,6 @@
-from forest.ffmpeg_wrapper.probe import get_video_length, get_video_info
-from forest.ffmpeg_wrapper.utils import is_video
-from forest.files import File
+from thicket.ffmpeg_wrapper.probe import get_video_length, get_video_info
+from thicket.ffmpeg_wrapper.utils import is_video
+from thicket.files import File
 
 
 class VideoFile(File):

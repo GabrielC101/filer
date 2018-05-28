@@ -1,9 +1,9 @@
 #!/usr/bin/env python
 import subprocess
 
-from forest.ffmpeg_wrapper.utils import is_video
+from thicket.ffmpeg_wrapper.utils import is_video
 
-from forest.ffmpeg_wrapper.parsers.video_info_parser import VideoInfoParser
+from thicket.ffmpeg_wrapper.parsers.video_info_parser import VideoInfoParser
 
 try:
     from subprocess import DEVNULL

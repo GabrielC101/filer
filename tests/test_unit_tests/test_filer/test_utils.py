@@ -6,7 +6,7 @@ import datetime
 
 from mock import patch
 
-from forest.utils import remove_nondigits, get_path_type, is_image, get_size, get_inode, atime, mtime, ctime, \
+from thicket.utils import remove_nondigits, get_path_type, is_image, get_size, get_inode, atime, mtime, ctime, \
     get_folder_size, get_mime_from_extension
 
 
@@ -22,9 +22,9 @@ def test_remove_nondigits_fail():
     assert not result == 'aabbcc'
 
 
-@patch('forest.utils.isfile', return_value=True)
-@patch('forest.utils.isdir', return_value=False)
-@patch('forest.utils.exists', return_value=True)
+@patch('thicket.utils.isfile', return_value=True)
+@patch('thicket.utils.isdir', return_value=False)
+@patch('thicket.utils.exists', return_value=True)
 def test_get_path_type_file_pass(MockExists, MockIsDir, MockIsFile):
     path = '/home/username/file'
     tipe = get_path_type(path)
@@ -37,9 +37,9 @@ def test_get_path_type_file_no_mock_pass():
     assert tipe == 'file'
 
 
-@patch('forest.utils.isfile', return_value=False)
-@patch('forest.utils.isdir', return_value=True)
-@patch('forest.utils.exists', return_value=True)
+@patch('thicket.utils.isfile', return_value=False)
+@patch('thicket.utils.isdir', return_value=True)
+@patch('thicket.utils.exists', return_value=True)
 def test_get_path_type_file_fail(MockExists, MockIsDir, MockIsFile):
     path = '/home/username/file'
     tipe = get_path_type(path)
@@ -52,9 +52,9 @@ def test_get_path_type_file_no_mock_fail():
     assert not tipe == 'file'
 
 
-@patch('forest.utils.isfile', return_value=False)
-@patch('forest.utils.isdir', return_value=True)
-@patch('forest.utils.exists', return_value=True)
+@patch('thicket.utils.isfile', return_value=False)
+@patch('thicket.utils.isdir', return_value=True)
+@patch('thicket.utils.exists', return_value=True)
 def test_get_path_type_dir_pass(MockExists, MockIsDir, MockIsFile):
     path = '/home/username/file'
     tipe = get_path_type(path)
@@ -67,9 +67,9 @@ def test_get_path_type_dir_no_mock_pass():
     assert tipe == 'directory'
 
 
-@patch('forest.utils.isfile', return_value=True)
-@patch('forest.utils.isdir', return_value=False)
-@patch('forest.utils.exists', return_value=True)
+@patch('thicket.utils.isfile', return_value=True)
+@patch('thicket.utils.isdir', return_value=False)
+@patch('thicket.utils.exists', return_value=True)
 def test_get_path_type_dir_fail(MockExists, MockIsDir, MockIsFile):
     path = '/home/username/file'
     tipe = get_path_type(path)
@@ -82,8 +82,8 @@ def test_get_path_type_dir_no_mock_fail():
     assert not tipe == 'directory'
 
 
-@patch('forest.utils.magic.from_file', return_value='image/jpeg')
-@patch('forest.utils.isfile', return_value=True)
+@patch('thicket.utils.magic.from_file', return_value='image/jpeg')
+@patch('thicket.utils.isfile', return_value=True)
 def test_is_image_true_pass(MockIsFile, MockMagicFromFile):
     path = '/home/username/image_file.jpg'
     result = is_image(path)
@@ -96,8 +96,8 @@ def test_is_image_true_no_mock_pass():
     assert result == True
 
 
-@patch('forest.utils.magic.from_file', return_value='application/pdf')
-@patch('forest.utils.isfile', return_value=True)
+@patch('thicket.utils.magic.from_file', return_value='application/pdf')
+@patch('thicket.utils.isfile', return_value=True)
 def test_is_image_true_fail(MockIsFile, MockMagicFromFile):
     path = '/home/username/image_file.jpg'
     result = is_image(path)
@@ -110,70 +110,70 @@ def test_is_image_true_no_mock_fail():
     assert not result == True
 
 
-@patch('forest.utils.os.stat', return_value=type('TestClass', (), {'st_size': 1}))
+@patch('thicket.utils.os.stat', return_value=type('TestClass', (), {'st_size': 1}))
 def test_get_size_pass(MockStSize):
     path = '/home/username/nonfile.txt'
     result = get_size(path)
     assert result == 1
 
 
-@patch('forest.utils.os.stat', return_value=type('TestClass1', (), {'st_size': 2}))
+@patch('thicket.utils.os.stat', return_value=type('TestClass1', (), {'st_size': 2}))
 def test_get_size_fail(MockStSize):
     path = '/home/username/nonfile.txt'
     result = get_size(path)
     assert not result == 1
 
 
-@patch('forest.utils.os.stat', return_value=type('TestClass', (), {'st_ino': 1}))
+@patch('thicket.utils.os.stat', return_value=type('TestClass', (), {'st_ino': 1}))
 def test_get_inode_pass(MockStSize):
     path = '/home/username/nonfile.txt'
     result = get_inode(path)
     assert result == 1
 
 
-@patch('forest.utils.os.stat', return_value=type('TestClass1', (), {'st_ino': 2}))
+@patch('thicket.utils.os.stat', return_value=type('TestClass1', (), {'st_ino': 2}))
 def test_get_inode_fail(MockStSize):
     path = '/home/username/nonfile.txt'
     result = get_inode(path)
     assert not result == 1
 
 
-@patch('forest.utils.os.stat', return_value=type('TestClass', (), {'st_atime': 1507390145}))
+@patch('thicket.utils.os.stat', return_value=type('TestClass', (), {'st_atime': 1507390145}))
 def test_get_atime_pass(MockStSize):
     path = '/home/username/nonfile.txt'
     result = atime(path)
     assert result == datetime.datetime.fromtimestamp(1507390145)
 
 
-@patch('forest.utils.os.stat', return_value=type('TestClass1', (), {'st_atime': 15073901111}))
+@patch('thicket.utils.os.stat', return_value=type('TestClass1', (), {'st_atime': 15073901111}))
 def test_get_atime_fail(MockStSize):
     path = '/home/username/nonfile.txt'
     result = atime(path)
     assert not result == datetime.datetime.fromtimestamp(1507390145)
 
 
-@patch('forest.utils.os.stat', return_value=type('TestClass', (), {'st_mtime': 1507390145}))
+@patch('thicket.utils.os.stat', return_value=type('TestClass', (), {'st_mtime': 1507390145}))
 def test_get_mtime_pass(MockStSize):
     path = '/home/username/nonfile.txt'
     result = mtime(path)
     assert result == datetime.datetime.fromtimestamp(1507390145)
 
 
-@patch('forest.utils.os.stat', return_value=type('TestClass1', (), {'st_mtime': 15073901111}))
+@patch('thicket.utils.os.stat', return_value=type('TestClass1', (), {'st_mtime': 15073901111}))
 def test_get_mtime_fail(MockStSize):
     path = '/home/username/nonfile.txt'
     result = mtime(path)
     assert not result == datetime.datetime.fromtimestamp(1507390145)
 
 
-@patch('forest.utils.os.stat', return_value=type('TestClass', (), {'st_ctime': 1507390145}))
+@patch('thicket.utils.os.stat', return_value=type('TestClass', (), {'st_ctime': 1507390145}))
 def test_get_ctime_pass(MockStSize):
     path = '/home/username/nonfile.txt'
     result = ctime(path)
     assert result == datetime.datetime.fromtimestamp(1507390145)
 
 
-@patch('forest.utils.os.stat', return_value=type('TestClass1', (), {'st_ctime': 15073901111}))
+@patch('thicket.utils.os.stat', return_value=type('TestClass1', (), {'st_ctime': 15073901111}))
 def test_get_ctime_fail(MockStSize):
     path = '/home/username/nonfile.txt'
     result = ctime(path)

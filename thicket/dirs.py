@@ -1,8 +1,8 @@
 #!/usr/bin/env python
 import os
 
-from forest.paths import Path
-from forest.utils import is_dir
+from thicket.paths import Path
+from thicket.utils import is_dir
 
 
 class Directory(Path):
