@@ -15,9 +15,10 @@ class Path(object):
     @property
     def initial_abspath(self):
         return os.path.abspath(self.initial_path)
+
     @property
     def path_type(self):
-        return get_path_type(self.get_abspath())
+        return get_path_type(self.abspath)
 
     @property
     def abspath(self):
@@ -33,7 +34,7 @@ class Path(object):
 
     @property
     def name_base(self):
-        return self.get_name()[:-abs(len(self.get_name_ext()))]
+        return self.name[:-abs(len(self.name_ext))]
 
     @property
     def name(self):
@@ -46,13 +47,13 @@ class Path(object):
     @property
     def dir_size(self):
 
-        if self.get_exists():
+        if self.exists:
 
-            if self.get_path_type() == 'directory':
+            if self.path_type == 'directory':
                 size = get_folder_size(self.abspath)
 
-            elif self.get_path_type() == 'file':
-                size = get_folder_size(self.get_dir_name())
+            elif self.path_type == 'file':
+                size = get_folder_size(self.dir_name)
 
             else:
                 raise ValueError("Path exists, but is not a directory or file - WTF!!??")
@@ -67,7 +68,7 @@ class Path(object):
 
     @property
     def realpath(self):
-        if self.get_is_link():
+        if self.is_link:
             result = os.path.realpath(self.abspath)
             if result == self.abspath:
                 raise Exception("Cyclical link - will loop forever")
@@ -100,13 +101,13 @@ class Path(object):
 
     @property
     def dropbox_name(self, seperator=''):
-        date = self.mtime().date().isoformat()
-        time = self.mtime().time().isoformat()
+        date = self.mtime.date().isoformat()
+        time = self.mtime.time().isoformat()
 
         if not seperator:
-            return '{} {}{}'.format(date, time, self.name_ext().lower())
+            return '{} {}{}'.format(date, time, self.name_ext.lower())
         else:
-            return '{}{}{}{}'.format(date, seperator, time, self.name_ext().lower())
+            return '{}{}{}{}'.format(date, seperator, time, self.name_ext.lower())
 
     def __str__(self):
         return '<{} at {}>'.format(self.__class__.__name__, self.abspath)
@@ -115,6 +116,6 @@ class Path(object):
         return '<{} at {}>'.format(self.__class__.__name__, self.abspath)
 
     def rename(self, new_name):
-        dir_name = self.get_dir_name()
+        dir_name = self.dir_name
         new_name = os.path.join(dir_name, new_name)
-        os.rename(self.get_abspath(), new_name)
+        os.rename(self.abspath, new_name)

@@ -37,7 +37,9 @@ tox: clean
 build: clean
 	python setup.py bdist_wheel --universal
 
-upload:
-	devpi upload --formats bdist_wheel
+upload: build
+	twine upload -r pypitest dist/thicket-*
+	twine upload -r pypi dist/thicket-*
+
 
 deploy: clean build upload
