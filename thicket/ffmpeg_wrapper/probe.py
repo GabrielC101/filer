@@ -12,9 +12,9 @@ except ImportError:
     DEVNULL = open(os.devnull, 'wb')
 
 
-def get_video_length(input_video):
+def video_length(input_video):
     if is_video(input_video):
-        info = get_video_info(input_video)
+        info = video_info(input_video)
         format_length = info.get('format').get('duration')
         video_stream_length = 0
         audio_stream_length = 0
@@ -39,7 +39,7 @@ def get_video_length(input_video):
         )
 
 
-def get_video_info(input_video):
+def video_info(input_video):
     if is_video(input_video):
 
         command_list = ['/usr/bin/ffprobe',

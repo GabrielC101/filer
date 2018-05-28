@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 import os
 
-from thicket.utils import get_path_type, get_size, get_inode, atime, mtime, ctime, get_folder_size, \
+from thicket.utils import get_path_type, get_size, get_inode, get_atime, get_mtime, get_ctime, get_folder_size, \
     get_mime_from_extension
 
 
@@ -13,28 +13,36 @@ class Path(object):
         self.initial_path = str(path)
         self.abspath = os.path.abspath(self.initial_path)
 
-    def get_path_type(self):
+    @property
+    def path_type(self):
         return get_path_type(self.get_abspath())
 
-    def get_abspath(self):
+    @property
+    def abspath(self):
         return self.abspath
 
-    def get_dir_name(self):
+    @property
+    def dir_name(self):
         return os.path.dirname(self.abspath)
 
-    def get_name_ext(self):
+    @property
+    def name_ext(self):
         return os.path.splitext(self.abspath)[1]
 
-    def get_name_base(self):
+    @property
+    def name_base(self):
         return self.get_name()[:-abs(len(self.get_name_ext()))]
 
-    def get_name(self):
+    @property
+    def name(self):
         return self.abspath.split('/')[-1]
 
-    def get_size(self):
+    @property
+    def size(self):
         return get_size(self.abspath)
 
-    def get_dir_size(self):
+    @property
+    def dir_size(self):
 
         if self.get_exists():
 
@@ -51,10 +59,12 @@ class Path(object):
 
         return size
 
-    def get_inode(self):
+    @property
+    def inode(self):
         return get_inode(self.abspath)
 
-    def get_realpath(self):
+    @property
+    def realpath(self):
         if self.get_is_link():
             result = os.path.realpath(self.abspath)
             if result == self.abspath:
@@ -62,35 +72,39 @@ class Path(object):
             return result
         return self.abspath
 
-    def get_is_link(self):
+    @property
+    def is_link(self):
         return os.path.islink(self.abspath)
 
-    def get_exists(self):
+    @property
+    def exists(self):
         return os.path.exists(self.abspath)
 
-    def get_stat(self):
+    @property
+    def stat(self):
         return os.stat(self.abspath)
 
-    def get_atime(self):
-        return atime(self.abspath)
+    @property
+    def atime(self):
+        return get_atime(self.abspath)
 
-    def get_mtime(self):
-        return mtime(self.abspath)
+    @property
+    def mtime(self):
+        return get_mtime(self.abspath)
 
-    def get_ctime(self):
-        return ctime(self.abspath)
+    @property
+    def ctime(self):
+        return get_ctime(self.abspath)
 
-    def get_mime(self):
-        return get_mime_from_extension(self.get_name_ext())
-
-    def get_dropbox_name(self, seperator=''):
-        date = self.get_mtime().date().isoformat()
-        time = self.get_mtime().time().isoformat()
+    @property
+    def dropbox_name(self, seperator=''):
+        date = self.mtime().date().isoformat()
+        time = self.mtime().time().isoformat()
 
         if not seperator:
-            return '{} {}{}'.format(date, time, self.get_name_ext().lower())
+            return '{} {}{}'.format(date, time, self.name_ext().lower())
         else:
-            return '{}{}{}{}'.format(date, seperator, time, self.get_name_ext().lower())
+            return '{}{}{}{}'.format(date, seperator, time, self.name_ext().lower())
 
     def __str__(self):
         return '<{} at {}>'.format(self.__class__.__name__, self.abspath)

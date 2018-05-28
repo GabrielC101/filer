@@ -6,7 +6,7 @@ import datetime
 
 from mock import patch
 
-from thicket.utils import remove_nondigits, get_path_type, is_image, get_size, get_inode, atime, mtime, ctime, \
+from thicket.utils import remove_nondigits, get_path_type, is_image, get_size, get_inode, get_atime, get_mtime, get_ctime, \
     get_folder_size, get_mime_from_extension
 
 
@@ -141,42 +141,42 @@ def test_get_inode_fail(MockStSize):
 @patch('thicket.utils.os.stat', return_value=type('TestClass', (), {'st_atime': 1507390145}))
 def test_get_atime_pass(MockStSize):
     path = '/home/username/nonfile.txt'
-    result = atime(path)
+    result = get_atime(path)
     assert result == datetime.datetime.fromtimestamp(1507390145)
 
 
 @patch('thicket.utils.os.stat', return_value=type('TestClass1', (), {'st_atime': 15073901111}))
 def test_get_atime_fail(MockStSize):
     path = '/home/username/nonfile.txt'
-    result = atime(path)
+    result = get_atime(path)
     assert not result == datetime.datetime.fromtimestamp(1507390145)
 
 
 @patch('thicket.utils.os.stat', return_value=type('TestClass', (), {'st_mtime': 1507390145}))
 def test_get_mtime_pass(MockStSize):
     path = '/home/username/nonfile.txt'
-    result = mtime(path)
+    result = get_mtime(path)
     assert result == datetime.datetime.fromtimestamp(1507390145)
 
 
 @patch('thicket.utils.os.stat', return_value=type('TestClass1', (), {'st_mtime': 15073901111}))
 def test_get_mtime_fail(MockStSize):
     path = '/home/username/nonfile.txt'
-    result = mtime(path)
+    result = get_mtime(path)
     assert not result == datetime.datetime.fromtimestamp(1507390145)
 
 
 @patch('thicket.utils.os.stat', return_value=type('TestClass', (), {'st_ctime': 1507390145}))
 def test_get_ctime_pass(MockStSize):
     path = '/home/username/nonfile.txt'
-    result = ctime(path)
+    result = get_ctime(path)
     assert result == datetime.datetime.fromtimestamp(1507390145)
 
 
 @patch('thicket.utils.os.stat', return_value=type('TestClass1', (), {'st_ctime': 15073901111}))
 def test_get_ctime_fail(MockStSize):
     path = '/home/username/nonfile.txt'
-    result = ctime(path)
+    result = get_ctime(path)
     assert not result == datetime.datetime.fromtimestamp(1507390145)
 
 

@@ -6,46 +6,46 @@ from os.path import isfile, isdir
 
 class Collection(list):
 
-    def get_items(self):
+    def items(self):
         return self
 
     def tolist(self):
         return list(self)
 
-    def get_num_items(self):
+    def num_items(self):
         return len(self)
 
-    def get_files(self, tolist=False):
+    def files(self, tolist=False):
         if not tolist:
-            return Collection([item for item in self.get_items() if isfile(item.get_abspath())])
+            return Collection([item for item in self.items() if isfile(item.abspath())])
         else:
-            return [item for item in self.get_items() if isfile(item.get_abspath())]
+            return [item for item in self.items() if isfile(item.abspath())]
 
-    def get_dirs(self, tolist=False):
+    def dirs(self, tolist=False):
         if not tolist:
-            return Collection([item for item in self.get_items() if isdir(item.get_abspath())])
+            return Collection([item for item in self.items() if isdir(item.abspath())])
         else:
-            return [item for item in self.get_items() if isdir(item.get_abspath())]
+            return [item for item in self.items() if isdir(item.abspath())]
 
-    def get_images(self, tolist=False):
+    def images(self, tolist=False):
         if not tolist:
-            return Collection([item for item in self.get_files().get_items() if item.get_mime()[0] == 'image'])
+            return Collection([item for item in self.files().items() if item.mime()[0] == 'image'])
         else:
-            return [item for item in self.get_files().get_items() if item.get_mime()[0] == 'image']
+            return [item for item in self.files().items() if item.mime()[0] == 'image']
 
-    def get_pngs(self, tolist=False):
+    def pngs(self, tolist=False):
         if not tolist:
-            return Collection([item for item in self.get_images().get_items() if item.get_mime()[1] == 'png'])
+            return Collection([item for item in self.images().items() if item.mime()[1] == 'png'])
         else:
-            return [item for item in self.get_images().get_items() if item.get_mime()[1] == 'png']
+            return [item for item in self.images().items() if item.mime()[1] == 'png']
 
-    def get_jpgs(self, tolist=False):
+    def jpgs(self, tolist=False):
         if not tolist:
-            return Collection([item for item in self.get_images().get_items() if item.get_mime()[1] == 'jpg' or item.get_mime()[1] == 'jpeg'])
+            return Collection([item for item in self.images().items() if item.mime()[1] == 'jpg' or item.mime()[1] == 'jpeg'])
         else:
-            return [item for item in self.get_images().get_items() if item.get_mime()[1] == 'jpg' or item.get_mime()[1] == 'jpeg']
+            return [item for item in self.images().items() if item.mime()[1] == 'jpg' or item.mime()[1] == 'jpeg']
 
-    def get_gifs(self, tolist=False):
+    def gifs(self, tolist=False):
         if not tolist:
             return Collection([item for item in self.get_files().get_items() if item.get_mime()[0] == 'gif'])
         else:

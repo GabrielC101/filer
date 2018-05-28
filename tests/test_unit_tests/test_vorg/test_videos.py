@@ -6,16 +6,16 @@
 #
 #
 # class TestVideo(BaseTestCase):
-#     def test_get_video_length(self):
+#     def test_video_length(self):
 #         test_video_path = VIDEO_PATH_001
 #         video = VideoFile(test_video_path)
-#         result = video.get_video_length()
+#         result = video.video_length()
 #         self.assertTrue(True)
 #
-#     def test_get_video_info(self):
+#     def test_video_info(self):
 #         test_video_path = VIDEO_PATH_001
 #         video = VideoFile(test_video_path)
-#         result = video.get_video_info()
+#         result = video.video_info()
 #         self.assertTrue(True)
 #
 #     def test_is_video(self):

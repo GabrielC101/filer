@@ -66,15 +66,15 @@ def get_inode(path):
     return os.stat(path).st_ino
 
 
-def atime(path):
+def get_atime(path):
     return datetime.datetime.fromtimestamp(os.stat(path).st_atime)
 
 
-def mtime(path):
+def get_mtime(path):
     return datetime.datetime.fromtimestamp(os.stat(path).st_mtime)
 
 
-def ctime(path):
+def get_ctime(path):
     return datetime.datetime.fromtimestamp(os.stat(path).st_ctime)
 
 
