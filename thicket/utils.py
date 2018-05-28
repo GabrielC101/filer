@@ -90,13 +90,14 @@ def get_folder_size(folder):
 
 
 def get_mime_from_extension(extension):
-    if extension[0] == '.':
-        extension = extension[1:]
-    mime_string = MIME_EXTENSION_DICT.get(str(extension))
-    if mime_string:
-        mime_list = mime_string.split('/')
-        mime_tuple = tuple(mime_list)
-        return mime_tuple
+    if extension:
+        if extension[0] == '.':
+            extension = extension[1:]
+        mime_string = MIME_EXTENSION_DICT.get(str(extension))
+        if mime_string:
+            mime_list = mime_string.split('/')
+            mime_tuple = tuple(mime_list)
+            return mime_tuple
     return tuple([None, None])
 
 

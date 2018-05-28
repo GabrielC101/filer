@@ -11,15 +11,17 @@ class Path(object):
 
     def __init__(self, path):
         self.initial_path = str(path)
-        self.abspath = os.path.abspath(self.initial_path)
 
+    @property
+    def initial_abspath(self):
+        return os.path.abspath(self.initial_path)
     @property
     def path_type(self):
         return get_path_type(self.get_abspath())
 
     @property
     def abspath(self):
-        return self.abspath
+        return self.initial_abspath
 
     @property
     def dir_name(self):
