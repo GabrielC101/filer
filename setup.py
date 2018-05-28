@@ -3,7 +3,7 @@ from setuptools import setup, find_packages
 VERSION = '0.29.1'
 
 setup(
-    name='forest',
+    name='thicket',
     version=str(VERSION),
     description='File Path API for Python.',
     packages=[
