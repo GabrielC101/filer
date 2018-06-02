@@ -6,15 +6,10 @@ ignore-paths:
   - docs
   - .tox
 
-
-#ignore-patterns:
-#  - (^|/)skip(this)?(/|$)
-
 pep8:
-  disable:
-#    - W602
-#    - W603
-  enable:
-#    - W601
   options:
     max-line-length: 120
+
+pylint:
+  disable:
+    - line-too-long  # Already checked by pep8

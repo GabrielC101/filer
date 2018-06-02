@@ -8,4 +8,3 @@ def test_import():
 
 def test_video_file():
     assert VideoFile.type == 'video'
-
