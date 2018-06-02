@@ -1,4 +1,0 @@
-ignore = D203
-exclude = .git,pycache__,docs/source/conf.py,old,build,dist,.cache,.tox,.venv,
-thicket.egg-info,venv
-max-complexity = 10

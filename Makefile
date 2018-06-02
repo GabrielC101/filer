@@ -17,15 +17,28 @@ clean:
 	rm --force --recursive .tox
 	rm --force --recursive .pytest_cache
 	find . -name '__pycache__' -exec rm --recursive --force {} +
+	find . -name '*.log' -exec rm --force {} +
 
 
-pip: clean pip-compile pip-sync
+pip-base:
+	pip install -U pip
+	pip install pip-tools
+
+pip-update: pip-base
+	pip-compile -U -o requirements/requirements.txt requirements/requirements.in
+	pip-compile -U -o requirements/requirements-dev.txt requirements/requirements-dev.in
+
+pip-sync:
+	pip-sync requirements/requirements-dev.txt
+
+pip-dev:
+	pip install ipython
+
+pip: clean pip-sync pip-dev
 
 isort:
-	isort --skip-glob=.tox --recursive --check-only . &> isort.log
+	@pytest --isort  . > isort.log ; true
 
-lint:
-	flake8 --exclude=.tox
 
 test: clean-pyc
 	py.test --verbose --color=yes $(TEST_PATH)
@@ -43,3 +56,12 @@ upload: build
 
 
 deploy: clean build upload
+
+
+flake:
+	@pytest --flake8 > flake8.log; true
+
+prospector:
+	@prospector > prospector.log; true
+
+lint: isort flake prospector

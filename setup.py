@@ -15,7 +15,7 @@ setup(
     author='Gabriel Curio',
     author_email='contactMeViaGithub@dummy.com',
     install_requires=[
-        'six',
+        'python-magic',
         'xxhash'
     ],
     python_requires='>=3.5',
