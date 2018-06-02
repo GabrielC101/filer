@@ -58,10 +58,7 @@ upload: build
 deploy: clean build upload
 
 
-flake:
-	@pytest --flake8 > flake8.log; true
-
 prospector:
 	@prospector > prospector.log; true
 
-lint: isort flake prospector
+lint: isort prospector
