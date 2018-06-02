@@ -22,7 +22,7 @@ clean:
 pip: clean pip-compile pip-sync
 
 isort:
-	isort --skip-glob=.tox --recursive .
+	isort --skip-glob=.tox --recursive --check-only . &> isort.log
 
 lint:
 	flake8 --exclude=.tox
