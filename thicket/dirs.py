@@ -1,5 +1,4 @@
 #!/usr/bin/env python
-import os
 
 from thicket.paths import Path
 from thicket.utils import is_dir

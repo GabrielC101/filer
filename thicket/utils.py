@@ -12,8 +12,6 @@ try:
 except ImportError:
     maketrans = str.maketrans
 
-from thicket.info import MIME_EXTENSION_DICT
-
 
 # For backwards compatibility. Previously, this module include unnecessary functions:
 # def is_dir() and def is_file().
