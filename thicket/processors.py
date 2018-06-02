@@ -12,6 +12,8 @@ class PathProcessor(object):
     @staticmethod
     def process(path):
         if os.path.exists(path):
+            if VideoFile.is_video(path):
+                return VideoFile(path)
             if os.path.isfile(path):
                 return File(path)
             if os.path.isdir(path):

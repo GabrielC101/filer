@@ -1,10 +1,11 @@
 #!/usr/bin/env python
 import datetime
 import os
-import string
 from os.path import exists
 from os.path import isdir
 from os.path import isfile
+
+from thicket.ffmpeg_wrapper.utils import is_video
 
 try:
     from string import maketrans

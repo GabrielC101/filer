@@ -1,9 +1,7 @@
 #!/usr/bin/env python
 import subprocess
-
+import json
 from thicket.ffmpeg_wrapper.utils import is_video
-
-from thicket.ffmpeg_wrapper.parsers.video_info_parser import VideoInfoParser
 
 try:
     from subprocess import DEVNULL
@@ -51,9 +49,9 @@ def video_info(input_video):
                         'json']
 
         stdout, stderr = subprocess.Popen(command_list, stdout=subprocess.PIPE, stderr=subprocess.PIPE).communicate()
-        parser = VideoInfoParser()
-        demarshaller = parser.loads(stdout)
-        return demarshaller.data
+        strout = stdout.decode('utf-8')
+        data = json.loads(strout)
+        return data
     else:
         default = {}
         return default
