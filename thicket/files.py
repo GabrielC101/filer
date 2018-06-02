@@ -7,7 +7,7 @@ import mimetypes
 import xxhash
 
 from thicket.paths import Path
-from thicket.utils import is_file
+from thicket.utils import is_file, get_media_type, get_mimetype
 
 
 class File(Path):
@@ -134,11 +134,11 @@ class File(Path):
 
     @property
     def mime(self):
-        return mimetypes.guess_type(self.abspath)[0]
+        return get_mimetype(self.abspath)
 
     @property
     def media_type(self):
-        return mimetypes.guess_type(self.abspath)[0].split('/')[0]
+        return get_media_type(self.abspath)
 
     @staticmethod
     def is_file(path):

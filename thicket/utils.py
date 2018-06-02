@@ -5,7 +5,6 @@ from os.path import exists
 from os.path import isdir
 from os.path import isfile
 import mimetypes
-from thicket.ffmpeg_wrapper.utils import is_video
 
 try:
     from string import maketrans
@@ -92,4 +91,14 @@ def get_folder_size(folder):
 
 # todo: add get mimetype util here. change test to accompany it.
 def get_mimetype(path):
-    return mimetypes.guess_type(path)[0]
+    if not mimetypes.guess_type(path)[0]:
+        return ''
+    else:
+        return mimetypes.guess_type(path)[0]
+
+
+def get_media_type(path):
+    try:
+        return get_mimetype(path).split('/')[0]
+    except:
+        return ''
