@@ -1,6 +1,6 @@
 from setuptools import setup, find_packages
 
-VERSION = '0.29.5'
+VERSION = '0.29.6'
 
 setup(
     name='thicket',
@@ -9,7 +9,6 @@ setup(
     packages=[
         'thicket',
         'thicket.ffmpeg_wrapper',
-        'thicket.ffmpeg_wrapper.parsers',
               ]
 ,
     url='https://github.com/GabrielC101/forest',
