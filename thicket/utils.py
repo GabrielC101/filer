@@ -4,14 +4,13 @@ import os
 from os.path import exists
 from os.path import isdir
 from os.path import isfile
-
+import mimetypes
 from thicket.ffmpeg_wrapper.utils import is_video
 
 try:
     from string import maketrans
 except ImportError:
     maketrans = str.maketrans
-import magic
 
 from thicket.info import MIME_EXTENSION_DICT
 
@@ -53,7 +52,10 @@ def get_path_type(path):
 
 def is_image(path):
     if isfile(path):
-        mime = tuple(magic.from_file(path, mime=True).split('/'))
+        try:
+            mime = get_mimetype(path).split('/')
+        except AttributeError:
+            return False
         if mime[0] == 'image':
             return True
     return False
@@ -90,15 +92,6 @@ def get_folder_size(folder):
     return total_size
 
 
-def get_mime_from_extension(extension):
-    if extension:
-        if extension[0] == '.':
-            extension = extension[1:]
-        mime_string = MIME_EXTENSION_DICT.get(str(extension))
-        if mime_string:
-            mime_list = mime_string.split('/')
-            mime_tuple = tuple(mime_list)
-            return mime_tuple
-    return tuple([None, None])
-
-
+# todo: add get mimetype util here. change test to accompany it.
+def get_mimetype(path):
+    return mimetypes.guess_type(path)[0]

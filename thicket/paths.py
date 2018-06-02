@@ -1,8 +1,7 @@
 #!/usr/bin/env python
 import os
 
-from thicket.utils import get_path_type, get_size, get_inode, get_atime, get_mtime, get_ctime, get_folder_size, \
-    get_mime_from_extension
+from thicket.utils import get_path_type, get_size, get_inode, get_atime, get_mtime, get_ctime, get_folder_size
 
 
 class Path(object):

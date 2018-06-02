@@ -2,15 +2,13 @@
 import os
 from os.path import isfile
 
-
-import magic
-
+import mimetypes
 
 def is_video(path):
     
     if isfile(path):
         abspath = os.path.abspath(path)
-        tipe = tuple(magic.from_file(abspath, mime=True).split('/'))[0]
+        tipe = mimetypes.guess_type(abspath)[0].split('/')[0]
         if tipe == 'video':
             return True
 

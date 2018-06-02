@@ -16,8 +16,6 @@ setup(
     author='Gabriel Curio',
     author_email='contactMeViaGithub@dummy.com',
     install_requires=[
-        'marshmallow',
-        'python-magic',
         'six',
         'xxhash'
     ],

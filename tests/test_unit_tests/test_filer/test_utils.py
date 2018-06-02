@@ -7,7 +7,7 @@ import datetime
 from mock import patch
 
 from thicket.utils import remove_nondigits, get_path_type, is_image, get_size, get_inode, get_atime, get_mtime, get_ctime, \
-    get_folder_size, get_mime_from_extension
+    get_folder_size
 
 
 def test_remove_nondigits_pass():
@@ -82,7 +82,7 @@ def test_get_path_type_dir_no_mock_fail():
     assert not tipe == 'directory'
 
 
-@patch('thicket.utils.magic.from_file', return_value='image/jpeg')
+@patch('thicket.utils.get_mimetype', return_value='image/jpeg')
 @patch('thicket.utils.isfile', return_value=True)
 def test_is_image_true_pass(MockIsFile, MockMagicFromFile):
     path = '/home/username/image_file.jpg'
@@ -96,7 +96,7 @@ def test_is_image_true_no_mock_pass():
     assert result == True
 
 
-@patch('thicket.utils.magic.from_file', return_value='application/pdf')
+@patch('thicket.utils.get_mimetype', return_value='application/pdf')
 @patch('thicket.utils.isfile', return_value=True)
 def test_is_image_true_fail(MockIsFile, MockMagicFromFile):
     path = '/home/username/image_file.jpg'
@@ -190,23 +190,3 @@ def test_folder_size_fail():
     path = './tests/fixtures/test_dir_01'
     result = get_folder_size(path)
     assert not result == 106006
-
-
-def test_get_mime_from_extension_group_pass():
-    result = get_mime_from_extension('jpg')
-    assert result[0] == 'image'
-
-
-def test_get_mime_from_extension_type_pass():
-    result = get_mime_from_extension('jpg')
-    assert result[1] == 'jpeg'
-
-
-def test_get_mime_from_extension_group_fail():
-    result = get_mime_from_extension('not-a-valid-extension')
-    assert not result[0] == 'image'
-
-
-def test_get_mime_from_extension_type_fail():
-    result = get_mime_from_extension('not-a-valid-extension')
-    assert not result[1] == 'jpeg'

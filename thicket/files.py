@@ -3,10 +3,11 @@ import hashlib
 import os
 import shutil
 import magic
+import mimetypes
 import xxhash
 
 from thicket.paths import Path
-from thicket.utils import is_file, get_mime_from_extension
+from thicket.utils import is_file
 
 
 class File(Path):
@@ -133,7 +134,11 @@ class File(Path):
 
     @property
     def mime(self):
-        return get_mime_from_extension(self.name_ext)
+        return mimetypes.guess_type(self.abspath)[0]
+
+    @property
+    def media_type(self):
+        return mimetypes.guess_type(self.abspath)[0].split('/')[0]
 
     @staticmethod
     def is_file(path):
