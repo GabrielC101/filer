@@ -1,6 +1,6 @@
 from setuptools import find_packages, setup
 
-VERSION = '0.29.6'
+VERSION = '0.29.7'
 
 setup(
     name='thicket',
