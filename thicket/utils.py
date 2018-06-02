@@ -1,21 +1,8 @@
 #!/usr/bin/env python
 import datetime
-import os
-from os.path import exists
-from os.path import isdir
-from os.path import isfile
 import mimetypes
-
-try:
-    from string import maketrans
-except ImportError:
-    maketrans = str.maketrans
-
-
-# For backwards compatibility. Previously, this module include unnecessary functions:
-# def is_dir() and def is_file().
-from os.path import isdir as is_dir
-from os.path import isfile as is_file
+import os
+from os.path import exists, isdir, isfile
 
 
 def remove_nondigits(string_arg):
@@ -89,12 +76,10 @@ def get_folder_size(folder):
     return total_size
 
 
-# todo: add get mimetype util here. change test to accompany it.
 def get_mimetype(path):
     if not mimetypes.guess_type(path)[0]:
         return ''
-    else:
-        return mimetypes.guess_type(path)[0]
+    return mimetypes.guess_type(path)[0]
 
 
 def get_media_type(path):

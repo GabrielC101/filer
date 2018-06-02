@@ -1,6 +1,7 @@
 #!/usr/bin/env python
-import subprocess
 import json
+import subprocess
+
 from thicket.ffmpeg_wrapper.utils import is_video
 
 try:
@@ -11,6 +12,7 @@ except ImportError:
 
 
 def video_length(input_video):
+
     if is_video(input_video):
         info = video_info(input_video)
         format_length = info.get('format').get('duration')
@@ -28,16 +30,17 @@ def video_length(input_video):
             audio_stream_length=audio_stream_length,
             format_length=format_length
         )
-    else:
-        default = float(0)
-        return dict(
-            video_stream_length=default,
-            audio_stream_length=default,
-            format_length=default
-        )
+
+    default = float(0)
+    return dict(
+        video_stream_length=default,
+        audio_stream_length=default,
+        format_length=default
+    )
 
 
 def video_info(input_video):
+
     if is_video(input_video):
 
         command_list = ['/usr/bin/ffprobe',
@@ -52,6 +55,6 @@ def video_info(input_video):
         strout = stdout.decode('utf-8')
         data = json.loads(strout)
         return data
-    else:
-        default = {}
-        return default
+
+    default = {}
+    return default

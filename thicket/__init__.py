@@ -1,8 +1,8 @@
 #!/usr/bin/env python
-from thicket.finders import list_files
-from thicket.finders import list_dirs
-from thicket.files import File
-from thicket.paths import Path
-from thicket.dirs import Directory
-from thicket.collection import Collection
-from thicket.processors import PathProcessor
+from thicket.finders import list_files  # noqa: F401
+from thicket.finders import list_dirs  # noqa: F401
+from thicket.files import File  # noqa: F401
+from thicket.paths import Path  # noqa: F401
+from thicket.dirs import Directory  # noqa: F401
+from thicket.collection import Collection  # noqa: F401
+from thicket.processors import PathProcessor  # noqa: F401

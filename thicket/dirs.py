@@ -1,7 +1,8 @@
 #!/usr/bin/env python
 
+from os.path import isdir
+
 from thicket.paths import Path
-from thicket.utils import is_dir
 
 
 class Directory(Path):
@@ -9,4 +10,4 @@ class Directory(Path):
 
     @staticmethod
     def is_dir(path):
-        return is_dir(path)
+        return isdir(path)

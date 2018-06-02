@@ -1,10 +1,10 @@
 #!/usr/bin/env python
 import os
 
-from thicket.videos import VideoFile
-from thicket.files import File
 from thicket.dirs import Directory
+from thicket.files import File
 from thicket.paths import Path
+from thicket.videos import VideoFile
 
 
 class PathProcessor(object):
@@ -18,5 +18,4 @@ class PathProcessor(object):
                 return File(path)
             if os.path.isdir(path):
                 return Directory(path)
-        else:
-            return Path(path)
+        return Path(path)

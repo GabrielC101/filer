@@ -2,11 +2,13 @@
 import hashlib
 import os
 import shutil
+from os.path import isfile
+
 import magic
 import xxhash
 
 from thicket.paths import Path
-from thicket.utils import is_file, get_media_type, get_mimetype
+from thicket.utils import get_media_type, get_mimetype
 
 
 class File(Path):
@@ -58,78 +60,78 @@ class File(Path):
 
     @property
     def xxhash32(self):
-        hash = xxhash.xxh32()
-        with open(self.abspath, 'rb') as f:
+        hasher = xxhash.xxh32()
+        with open(self.abspath, 'rb') as open_file:
             while True:
-                data = f.read(65536)
+                data = open_file.read(65536)
                 if not data:
                     break
-                hash.update(data)
-        return hash.hexdigest()
+                hasher.update(data)
+        return hasher.hexdigest()
 
     @property
     def xxhash64(self):
-        hash = xxhash.xxh64()
-        with open(self.abspath, 'rb') as f:
+        hasher = xxhash.xxh64()
+        with open(self.abspath, 'rb') as open_file:
             while True:
-                data = f.read(65536)
+                data = open_file.read(65536)
                 if not data:
                     break
-                hash.update(data)
-        return hash.hexdigest()
+                hasher.update(data)
+        return hasher.hexdigest()
 
     @property
     def md5(self):
-        hash = hashlib.md5()
-        with open(self.abspath, 'rb') as f:
+        hasher = hashlib.md5()
+        with open(self.abspath, 'rb') as open_file:
             while True:
-                data = f.read(65536)
+                data = open_file.read(65536)
                 if not data:
                     break
-                hash.update(data)
-        return hash.hexdigest()
+                hasher.update(data)
+        return hasher.hexdigest()
 
     @property
     def sha1(self):
-        hash = hashlib.sha1()
-        with open(self.abspath, 'rb') as f:
+        hasher = hashlib.sha1()
+        with open(self.abspath, 'rb') as open_file:
             while True:
-                data = f.read(65536)
+                data = open_file.read(65536)
                 if not data:
                     break
-                hash.update(data)
-        return hash.hexdigest()
+                hasher.update(data)
+        return hasher.hexdigest()
 
     @property
     def sha256(self):
-        hash = hashlib.sha256()
-        with open(self.abspath, 'rb') as f:
+        hasher = hashlib.sha256()
+        with open(self.abspath, 'rb') as open_file:
             while True:
-                data = f.read(65536)
+                data = open_file.read(65536)
                 if not data:
                     break
-                hash.update(data)
-        return hash.hexdigest()
+                hasher.update(data)
+        return hasher.hexdigest()
 
     @property
     def sha512(self):
-        hash = hashlib.sha512()
-        with open(self.abspath, 'rb') as f:
+        hasher = hashlib.sha512()
+        with open(self.abspath, 'rb') as open_file:
             while True:
-                data = f.read(65536)
+                data = open_file.read(65536)
                 if not data:
                     break
-                hash.update(data)
-        return hash.hexdigest()
+                hasher.update(data)
+        return hasher.hexdigest()
 
     @property
     def big_name(self, seperator='_'):
         date = self.mtime.date().isoformat()
         time = self.mtime.time().isoformat()
-        dn = '{}{}{}'.format(date, seperator, time)
+        date_name = '{}{}{}'.format(date, seperator, time)
 
-        hash = self.sha1
-        return '{}{}{}{}'.format(dn, seperator, hash, self.name_ext.lower())
+        hash_value = self.sha1
+        return '{}{}{}{}'.format(date_name, seperator, hash_value, self.name_ext.lower())
 
     @property
     def mime(self):
@@ -141,4 +143,4 @@ class File(Path):
 
     @staticmethod
     def is_file(path):
-        return is_file(path)
+        return isfile(path)

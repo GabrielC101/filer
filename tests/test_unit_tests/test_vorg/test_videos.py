@@ -23,4 +23,3 @@
 #         video = VideoFile(test_video_path)
 #         result = video.is_video(test_video_path)
 #         self.assertTrue(True)
-

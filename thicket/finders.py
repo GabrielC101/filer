@@ -1,8 +1,8 @@
 #!/usr/bin/env python
 import os
 
-from thicket.processors import PathProcessor
 from thicket.collection import Collection
+from thicket.processors import PathProcessor
 
 
 def list_dirs(path='.', recursive=True, include_parent_dir=False):
@@ -45,14 +45,13 @@ def list_files(path='.', recursive=True):
         )
         files = Collection(files)
         return files
-    else:
-        files = tuple(
-            [
-                PathProcessor().process(os.path.join(path, f))
-                for f in os.listdir(path)
-                if os.path.isfile(os.path.join(path, f))
-            ]
-        )
-        files = Collection(files)
-        return files
 
+    files = tuple(
+        [
+            PathProcessor().process(os.path.join(path, f))
+            for f in os.listdir(path)
+            if os.path.isfile(os.path.join(path, f))
+        ]
+    )
+    files = Collection(files)
+    return files

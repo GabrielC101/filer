@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 import os
 
-from thicket.utils import get_path_type, get_size, get_inode, get_atime, get_mtime, get_ctime, get_folder_size
+from thicket.utils import get_atime, get_ctime, get_folder_size, get_inode, get_mtime, get_path_type, get_size
 
 
 class Path(object):
@@ -105,8 +105,8 @@ class Path(object):
 
         if not seperator:
             return '{} {}{}'.format(date, time, self.name_ext.lower())
-        else:
-            return '{}{}{}{}'.format(date, seperator, time, self.name_ext.lower())
+
+        return '{}{}{}{}'.format(date, seperator, time, self.name_ext.lower())
 
     def __str__(self):
         return '<{} at {}>'.format(self.__class__.__name__, self.abspath)
