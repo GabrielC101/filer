@@ -3,7 +3,6 @@ import hashlib
 import os
 import shutil
 import magic
-import mimetypes
 import xxhash
 
 from thicket.paths import Path
