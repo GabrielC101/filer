@@ -1,10 +1,10 @@
 #!/usr/bin/env python
 
+from collections.abc import MutableSequence
 from os.path import isfile, isdir
 
 
-class Collection(list):
-
+class Collection(list, MutableSequence):
 
     @property
     def items(self):
