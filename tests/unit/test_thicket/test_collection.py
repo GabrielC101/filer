@@ -1,30 +1,26 @@
 from collections.abc import MutableSequence
 
-from thicket import collection
 from thicket.collection import Collection
 
 
-def test_import():
-    assert collection
-
-
 def test_instantiation():
-    collect = Collection()
-    assert isinstance(collect, Collection)
-    assert isinstance(collect, list)
-    assert isinstance(collect, MutableSequence)
+    collection = Collection()
+    assert isinstance(collection, Collection)
+    assert isinstance(collection, list)
+    assert isinstance(collection, MutableSequence)
 
 
 def test_items():
-    collect = Collection()
-    assert isinstance(collect.items, list)
+    collection = Collection()
+    assert isinstance(collection.items, list)
 
 
 def test_tolist():
-    collect = Collection()
-    assert isinstance(collect.tolist, list)
+    collection = Collection()
+    assert isinstance(collection.tolist, list)
 
 
 def test_num_items():
-    collect = Collection()
-    assert collect.num_items == 0
+    collection = Collection()
+    assert collection.num_items == 0
+

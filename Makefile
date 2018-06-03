@@ -39,9 +39,8 @@ pip: clean pip-sync pip-dev
 isort:
 	@pytest --isort  . > isort.log ; true
 
-
 test: clean-pyc
-	py.test --verbose --color=yes $(TEST_PATH)
+	py.test -vv --color=yes $(TEST_PATH)
 
 tox: clean
 	pip install pytest mock coverage tox

@@ -183,5 +183,5 @@ def test_get_ctime_fail(mock_st_size):
 def test_folder_size():
     path = './tests/fixtures/test_dir_01'
     result = get_folder_size(path)
-    assert result == 352615
+    assert result == 355618
     assert result != 106006
