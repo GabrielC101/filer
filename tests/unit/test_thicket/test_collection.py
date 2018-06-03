@@ -23,4 +23,3 @@ def test_tolist():
 def test_num_items():
     collection = Collection()
     assert collection.num_items == 0
-

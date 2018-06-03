@@ -8,10 +8,10 @@ from thicket.processors import PathProcessor
 def list_dirs(path='.', recursive=True, include_parent_dir=False):
     if recursive:
         directories = [
-                PathProcessor().process(os.path.join(root, name))
-                for root, dirs, files in os.walk(path)
-                for name in dirs
-            ]
+            PathProcessor().process(os.path.join(root, name))
+            for root, dirs, files in os.walk(path)
+            for name in dirs
+        ]
 
         directories = Collection(directories)
     else:
