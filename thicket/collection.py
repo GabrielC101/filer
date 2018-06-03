@@ -37,33 +37,35 @@ class Collection(list, MutableSequence):
     @property
     def images(self, tolist=False):
         if not tolist:
-            return Collection([item for item in self.files.items if item.mime[0] == 'image'])
+            return Collection([item for item in self.files.items if item.media_type == 'image'])
 
-        return [item for item in self.files.items if item.mime[0] == 'image']
+        return [item for item in self.files.items if item.media_type == 'image']
 
     @property
     def pngs(self, tolist=False):
 
         if not tolist:
-            return Collection([item for item in self.images.items if item.mime[1] == 'png'])
+            return Collection([item for item in self.images.items if item.mime.split('/')[1] == 'png'])
 
-        return [item for item in self.images.items if item.mime()[1] == 'png']
+        return [item for item in self.images.items if item.mime.split('/')[1] == 'png']
 
     @property
     def jpgs(self, tolist=False):
 
         if not tolist:
-            return Collection([item for item in self.images.items if item.mime[1] == 'jpg' or item.mime[1] == 'jpeg'])
+            return Collection([item for item in self.images.items
+                               if item.mime.split('/')[1] == 'jpg' or item.mime.split('/')[1] == 'jpeg'])
 
-        return [item for item in self.images.items if item.mime[1] == 'jpg' or item.mime[1] == 'jpeg']
+        return [item for item in self.images.items
+                if item.mime.split('/')[1] == 'jpg' or item.mime.split('/')[1] == 'jpeg']
 
     @property
     def gifs(self, tolist=False):
 
         if not tolist:
-            return Collection([item for item in self.files.items if item.mime[0] == 'gif'])
+            return Collection([item for item in self.files.items if item.mime.split('/')[1] == 'gif'])
 
-        return [item for item in self.files.items if item.mime[0] == 'gif']
+        return [item for item in self.files.items if item.mime.split('/')[1] == 'gif']
 
     @property
     def tiffs(self, tolist=False):
