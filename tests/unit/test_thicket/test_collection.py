@@ -1,3 +1,5 @@
+from collections.abc import MutableSequence
+
 from thicket import collection
 from thicket.collection import Collection
 
@@ -9,6 +11,8 @@ def test_import():
 def test_instantiation():
     collect = Collection()
     assert isinstance(collect, Collection)
+    assert isinstance(collect, list)
+    assert isinstance(collect, MutableSequence)
 
 
 def test_items():
