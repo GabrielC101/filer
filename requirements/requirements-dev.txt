@@ -33,7 +33,7 @@ pytest-cache==1.0         # via pytest-isort
 pytest-isort==0.2.0
 pytest==3.6.0
 python-magic==0.4.15
-pyyaml==3.12              # via prospector
+pyyaml==5.1               # via prospector
 requirements-detector==0.5.2  # via prospector
 setoptconf==0.2.0         # via prospector
 six==1.11.0               # via astroid, mock, more-itertools, pydocstyle, pylint, pytest, tox
